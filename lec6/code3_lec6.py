@@ -1,4 +1,3 @@
-# 가상의 이메일 전송 함수
 def send_mail(from_mail, to_mail, subject, contents):
     print("From : \t" + from_mail)
     print("To : \t" + to_mail)
