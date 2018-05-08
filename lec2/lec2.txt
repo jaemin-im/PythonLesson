@@ -1,0 +1,173 @@
+=== 파이썬의 뜻 ===
+파이썬: 스크립트 언어
+스크립트 언어: 컴파일 없이 실행 가능한 언어
+컴파일: 어떤 언어의 코드를 다른 언어로 변환 (원시 언어(고급 언어) -> 목적 언어(저급 언어, 기계어))
+
+=== 컴파일러&인터프리터 ===
+1. 컴파일러
+ㄱ. 프로그램 단위 번역
+ㄴ. 번역 속도 느림
+ㄷ. 실행 속도 빠름
+ㄹ. 큰 메모리 필요(메모리 부족 에러 위험)
+2. 인터프리터
+ㄱ. 명령 줄 단위 번역
+ㄴ. 번역 속도 빠름
+ㄷ. 실행 속도 느림
+ㄹ. 적은 메모리 필요
+
+=== 파이썬 자료형 ===
+파이썬은 데이터를 변수에 담는 순간 자료형이 정해짐
+자료형마다 각각의 연산을 지원함
+ex) '어영' + '부영' = '어영부영', 3 + 3.14 = 6.14
+1. 기본적인 연산자
+더하기+, 빼기-, 곱하기*, 나누기/, 제곱**, 나머지%, 몫//
+제곱(**)과 몫(//)이 추가됨
+2. 연산의 결과
+정수와 실수의 연산 -> 실수
+음수를 나누었을 때 나머지가 있는 경우 -> -1이 추가됨
+ex) -11 // 2 = -6 (-1이 추가된 값)
+
+=== 문자열 표현 ===
+문자열 표현에는 4가지 방법
+1. 'asdf'
+2. "asdf"
+3. '''adsfasdf'''
+4. """asdfasdf"""
+\n, \t 등 여러 이스케이프 표기를 사용 가능
+3번과 4번 표기법의 경우 개행을 넣던 탭을 넣고 뭘 하던 상관없음
+
+=== 문자열 조작 ===
+문자열을 '인덱싱'하거나 '슬라이싱'할 수 있음
+인덱싱: 문자열에서 특정 '문자'를 지정
+슬라이싱: 문자열에서 특정 '문자열'을 지정
+1. 인덱싱 사용 방법
+배열처럼 특정 인덱스를 지정하면 됨 ex) a[0], a[2], a[-1]
+2. 슬라이싱 사용 방법
+콜론 기호를 이용하여 인덱스를 지정하면 됨 ex) a[:5], a[3:], a[:]
+
+=== 리스트 ===
+마치 struct처럼 여러가지가 들어가있는 자료형
+ex) a = [123, 3.14, 'abc']
+리스트 역시 인덱싱과 슬라이싱을 통해 특정 요소를 지정할 수 있음
+
+=== 딕셔너리 ===
+대응관계를 나타낼 수 있는 자료형
+key와 value가 연결된 자료형
+딕셔너리 자체의 연산은 없음
+인덱싱은 되나 슬라이싱은 되지 않음
+
+=== 내장함수 (문자열) ===
+count: 특정 문자열에 인자(string)가 들어가있는 회수를 반환
+ex) a = 'asdfasdf', b = 'asdf', a.count(b) : 2
+index: 특정 문자열에 인자(string)가 맨 처음으로 들어있는 인덱스를 반환
+ex) a = 'asdfasdf', a.index('f') : 3, a.index('ff') : ValueError
+find: index와 같으나 substring이 없으면 -1을 반환
+ex) a = 'asdfasdf', a.find('f') : 3, a.find('ff') : -1
+join: 특정 문자열의 글자 사이에 인자를 반복하여 넣음
+ex) q = ',', w = 'DSM', e = q.join(w), e : 'D, S, M'
+upper: 특정 문자열의 모든 문자를 대문자화
+ex) w = 'dsm', w.upper() : DSM
+lower: 특정 문자열의 모든 문자를 소문자화
+ex) w = 'DSM', w.lower() : dsm
+replace: 특정 문자열의 지정된 문자열(1번째 인자)을 다른 문자열(2번째 인자)로 교체
+ex) a = 'asdfasdf', a.replace('asdf', 'qwer') : 'qwerqwer'
+split: 특정 문자열에서 지정된 문자열을 제외(나누기)
+ex) e = 'DSMDSM', e.split('DS') : ['', 'M', 'M']
+lstrip: 특정 문자열의 왼쪽부터 지정된 문자열을 모두 제거
+ex) e = 'DDDDSMDSM', e.lstrip('D') : 'SMDSM'
+rstrip: 특정 문자열의 오른쪽부터 지정된 문자열을 모두 제거
+ex) e = 'DSMDSMMMMMMMMM', e.rstrip('M') : 'DSMDS'
+strip: 특정 문자열의 양쪽 끝부터 지정된 문자열을 모두 제거
+ex) e = 'DDDDDDDSMMMMMMMM', e.strip('DM') : 'S'
+type: 해당 인자의 자료형을 반환
+ex) a = 'asdf', b = 1234, type(a) : <class 'str'>, type(123) : <class 'int'>
+int: 인자의 int형을 반환
+ex) a = '1234', b = 234, int(a) : 1234, int(b) : 234
+str: 인자의 str형을 반환
+ex) a = '1234', b = 234, str(a) : 1234, str(b) : 234
+ord: 인자의 아스키 코드값을 반환
+ex) ord('A') : 65
+chr: 인자의 char를 반환(ord의 반대)
+ex) ord(65) : 'A'
+
+
+# ================================================ #
+
+# append
+res = [1, 2, 3]
+res.append(4)
+print(res)
+# append함수의 인자를 문자열 뒤에 추가한다.
+
+# sort
+res1 = ['e', 'a', 'h']
+res2 = [1, 6, 2]
+res1.sort()
+res2.sort(reverse=True) # Python의 참, 거짓은 True, False
+print(res1)
+print(res2)
+res3 = sorted(res1)
+res4 = sorted(res1, reverse=True)
+res3.reverse() # 옵션을 쓰지 않고 reverse()를 이용하여 내림차순 변환 가능
+print(res3)
+print(res4)
+# Tip: sorted는 딕셔너리 정렬이 가능하다, sort는 불가능
+a = {'2': 'B', '1': 'A', '3': 'C'}
+a1 = sorted(a)
+print(a1)
+
+# insert
+res = [100, 123, 523]
+res.insert(1, 1+1)
+print(res)
+# 특정 인덱스의 값이 되도록 요소를 추가한다.
+
+# remove
+res = [10, 20, 30, 40, 10]
+res.remove(10)
+print(res)
+# 함수의 인자값을 찾아서 삭제한다.
+# 값이 여러개라면 가장 첫 번째 요소를 삭제한다.
+
+# pop
+res = [10, 20, 30, 40]
+a = res.pop() # 반환값이 있다.
+print(a)
+# 마지막 요소를 삭제한다.
+# 반환값이 있으므로 변수에 pop한 값을 저장할 수 있다.
+
+# count
+a = [10, 10, 101, 102, 5 + 5, 'ab']
+res = a.count(10) # 3
+print(res)
+# 함수의 인자값을 찾아서 개수를 센다.
+
+# ======================================================= #
+# 딕셔너리 함수
+
+# keys
+a = {'a': 123, 'b': 456}
+res = list(a.keys())
+print(res)
+
+# values
+a = {'a': 123, 'b': 456}
+res = list(a.values())
+print(res)
+
+# items
+a = {'a': 123, 'b': 456}
+res = list(a.items())
+print(res)
+
+# get
+a = {'q': 123, 'w': 456}
+res = a.get('t', 789) # None일 경우 2번째 인자를 반환
+print(res)
+# 대상 값이 있다면, 그 키의 value를 반환
+# 대상 값이 없다면, get함수는 None을 반환(인자가 1개일 경우), a['X']는 에러 반환
+
+# in
+a = {'q': 123, 'w': 456}
+print('q' in a)
+# 키 값이 있다면 True, 없다면 False

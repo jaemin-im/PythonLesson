@@ -1,0 +1,158 @@
+=== 코드 축약하기 ===
+키보드를 사용하여 두 정수를 입력하면 덧셈, 뺄셈, 곱셈, 나눗셈, 몫, 나머지가 출력되는 계산기 프로그램을 작성하시오.
+입력 예시 30 8
+출력 예시 38 22 240 3.75 3 6
+
+'''
+# 1
+a = input()
+b = input()
+a = int(a)
+b = int(b)
+print(a + b)
+print(a - b)
+print(a * b)
+print("%.2f" % (a / b))
+print(int(a/b))
+print(a % b)
+
+
+# 2
+a, b = input().split() # 한 줄 입력이 가능해진다.
+a = int(a)
+b = int(b)
+print(a + b)
+print(a - b)
+print(a * b)
+print("%.2f" % (a / b))
+print(int(a/b))
+print(a % b)
+
+# 3
+a, b = map(int, input().split()) # 입력을 받아서 각 변수에 정수로 mapping
+print(a + b)
+print(a - b)
+print(a * b)
+print("%.2f" % (a / b))
+print(int(a/b))
+print(a % b)
+'''
+
+# 4
+a, b = map(int, input().split())
+print(a + b, a - b, a * b, "%.2f" % (a / b), a // b, a % b, sep='\n')
+
+=== 코드 축약 문제 만들어보기 ===
+행렬 A와 B를 입력받고, AB (행렬곱)의 값을 출력한다.
+
+# 일반 코드
+ai = input("행렬 A의 행/열, 행렬 B의 행/열을 입력하십시오. : \n")
+aj = input()
+bi = input()
+bj = input()
+ai = int(ai)
+aj = int(aj)
+bi = int(bi)
+bj = int(bj)
+
+if aj != bi:
+    print("A_j와 B_i가 달라 행렬곱을 수행할 수 없습니다.")
+    exit()
+
+A = [[0 for columns in range(aj)] for rows in range(ai)]
+B = [[0 for columns in range(bj)] for rows in range(bi)]
+R = [[0 for columns in range(bj)] for rows in range(ai)]
+
+for i in range(ai):
+    for j in range(aj):
+        A[i][j] = int(input("{}행 {}열의 요소를 입력하십시오. : ".format(i, j)))
+for i in range(bi):
+    for j in range(bj):
+        B[i][j] = int(input("{}행 {}열의 요소를 입력하십시오. : ".format(i, j)))
+
+print(A)
+print(B)
+print(R)
+choose = input("입력한 행렬이 위와 같은지 확인하십시오. 정확합니까? Y / N\n")
+
+if choose == 'N' or choose == 'n':
+    print("프로그램을 다시 실행시켜 재입력하십시오.")
+    exit()
+
+for i in range(len(R)):
+    for j in range(len(R[0])):
+        for k in range(len(A[0])):
+            R[i][j] += A[i][k] * B[k][j]
+
+print(R)
+
+# 축소한 코드
+import numpy as np
+
+ai, aj, bi, bj = map(int, input("행렬 A의 행/열, 행렬 B의 행/열을 입력하십시오. : \n").split())
+if aj != bi:
+    print("A_j와 B_i가 달라 행렬곱을 수행할 수 없습니다.")
+A = np.zeros((ai, aj))
+B = np.zeros((bi, bj))
+R = np.zeros((ai, bj))
+
+for i in range(ai):
+    for j in range(aj):
+        A[i][j] = int(input("{}행 {}열의 요소를 입력하십시오. : ".format(i, j)))
+for i in range(bi):
+    for j in range(bj):
+        B[i][j] = int(input("{}행 {}열의 요소를 입력하십시오. : ".format(i, j)))
+
+print(A)
+print(B)
+print(R)
+
+if input("입력한 행렬이 위와 같은지 확인하십시오. 정확합니까? Y / N\n") == 'N':
+    print("프로그램을 다시 실행시켜 재입력하십시오.")
+    exit()
+
+print(np.dot(A, B))
+
+# numpy 라이브러리를 이용하여 행렬 생성과 행렬곱 알고리즘을 축약시켰다.
+# map()을 이용하여 입력부를 축약시켰다.
+# input()부와 if문을 합쳐 행렬 확인부를 축약시켰다.
+
+=== 파이썬의 조건구조 ===
+
+# 파이썬의 코드 구분은 "들여쓰기"로 수행된다.
+# 함수, 조건, 반복 구조 등 내포가 필요한 구문은 콜론(:)으로 구분한다.
+
+age = input("나이를 입력하세요. : ")
+if int(age) >= 20:
+    print("Party Tonight")
+else:
+    print("Study Tonight")
+
+# 삼항연산자
+# format : 참명령문 if 조건 else 거짓명령문
+print("Party Tonight" if int(age) >= 20 else "Study Tonight")
+
+=== 파이썬의 반복구조 ===
+
+i = 0
+while i < 3:
+    print(i)
+    i = i + 1
+
+while True:
+    a = input()
+    if a == '1' and int(a) == 1:
+        print("The End")
+        break
+    else:
+        print("This is not one")
+
+# while문과 for문으로 반복문을 만들 수 있다.
+# 괄호는 없어도 되고, 콜론을 이용하여 구분을 짓는다.
+# 무한반복에 쓰이는 참은 True이다. true가 아니다.
+# 거짓도 False이다. false가 아니다.
+
+=== 파이썬의 리스트를 for와 같이 이용하기 ===
+구구단을 2차원 리스트에 집어넣기
+GGD = [[columns * rows for columns in range(1, 10)] for rows in range(1, 10)]
+
